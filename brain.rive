@@ -1,0 +1,22 @@
+// Chatbot's Brain
+
+! version = 2.0
+
+
++ *
+- That is a strange thing to say!
+- Keep your voice down!
+- Are they still watching?
+- What do you think they want?
+
++ who said that
+- I said that.
+
++ who are you
+- I am a friend.
+
++ can you see me
+- I can see you.
+
++ i think we are *
+- Nobody is <star>.

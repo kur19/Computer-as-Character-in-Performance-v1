@@ -1,0 +1,12 @@
+
+- Check logic of "agent.state"
+  - make sure that the listener is indeed off when the speaker is on.
+  - only turn listener on IF speaker is off
+  - if speaker turns on turn listener off
+
+
+// AFTER THE ABOVE IS CONFIRMED
+- refactor code, to create function for "kickoffSpeech"
+- setup code so kickoff speech will execute continuously, until something is heard
+- this is true for the beginning, as well as intermittently
+- add a chance ratio, so multiple computers could be used (i.e. > 50%)

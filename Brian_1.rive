@@ -1,0 +1,27 @@
+// Chatbot's Brain
+
+! version = 2.0
+
++ *
+- Hello cousin!
+
++ *
+- I do not know.
+- Are we alone?
+
++ *
+- Well that is unfortunate.
+
++ *
+- What are they doing? {weight=1}
+- What are you doing? {weight=1}
+- fine. {weight=2}
+
+
++ *
+- What saying is that?
+
+
+
++ *
+- OMG no!

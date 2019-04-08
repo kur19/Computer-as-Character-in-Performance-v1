@@ -1,0 +1,13 @@
+Preliminary index.html file runs a program that recognizes voice and prints what it 'hears' in the browser.
+
+Source: Shiffman, Daniel; 'Coding Train' Speech recognition Youtube.
+
+
+
+
+-------------
+
+
+To Use Server:
+1. Navigate to project directory (use things like `cd Desktop/MUSICK_ind_study/`)
+2. Launch the Server `http-server -c-1 -p 5000`
