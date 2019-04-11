@@ -3,7 +3,9 @@
 // variable used to get objects to top level
 var der;
 
-let agent = {};
+let agent = { started: false };
+// define listener to be able to reset it
+let listener;
 
 // if selffeedback mode, then use continuous listening
 let selfFeedback = false;
@@ -25,13 +27,25 @@ function draw() {
 
 
 function mousePressed() {
-    speechSetup();
+    if (agent.started) {
+        startListener();
+    } else {
+        speechSetup();
+    }
 }
 
+// start the listener
+function startListener() {
+    if (agent.state !== 'listening' && agent.state !== 'speaking') {
+        console.log("started listener");
+        listener.start();
+    }
+}
 
 function speechSetup() {
+    agent.started = true;
+    listener = new p5.SpeechRec('en-US', gotSpeech);
     let speech = new p5.Speech();
-    let listener = new p5.SpeechRec('en-US', gotSpeech);
     let continuous = false;
 
     if (selfFeedback) {
@@ -47,27 +61,22 @@ function speechSetup() {
 
     // ***********************CALLBACK FUNCTIONS*****************************
 
-    // start the listener
-    function startListener() {
-        if (agent.state !== 'listening') {
-            console.log("started listener");
-            listener.start();
-        }
-    }
+
 
     listener.onStart = function() {
-        // console.log("I am listening...");
+        console.log("I am listening...");
         agent.state = 'listening';
     };
     listener.onEnd = function() {
         console.log("I stopped listening!!!!!!!");
+        console.log(listener.resultValue);
         if (!selfFeedback) { agent.state = undefined; }
+        if (listener.resultValue === undefined) { startListener(); }
     };
 
     // function to execute when speaking starts
     speech.onStart = function() {
         console.log("started talking...");
-        agent.state = 'speaking';
     };
 
     // function to execute when speaking stops
@@ -75,7 +84,11 @@ function speechSetup() {
         console.log("stopped talking...");
         if (!selfFeedback) { agent.state = undefined; }
         // restart listener
-        if (!selfFeedback) { startListener(); console.log("stop talking, start listening"); }
+        if (!selfFeedback) {
+            startListener();
+            console.log("stop talking, start listening");
+            listener.resultValue = undefined;
+        }
 
     };
 
@@ -94,11 +107,11 @@ function speechSetup() {
     function brainError() {
         console.log('Chatbot error!');
     }
-    //let button = select('#submit');
+
     let user_input = select('#user_input');
     let output = select('#output');
 
-    //button.mousePressed(chat);
+
 
     let silenceCheckTimer;
 
@@ -113,44 +126,19 @@ function speechSetup() {
             // get the reply from rive script
             // then hand it to the synthesizer
             bot.reply("local-user", input).then(function(reply) {
-
+                agent.state = 'speaking';
                 listener.rec.abort();
                 speech.speak(reply);
                 output.html(reply);
                 console.log(reply);
-                // clearTimeout(silenceCheckTimer);
-                // silenceCheckTimer = setTimout(function() {
-                //     listener.rec.abort();
-                //     agent.state = "speaking";
-                //     kickoffSpeech.speak(kickoffStatements[2]);
-                // },
-                //     8000
-                // );
-
             });
         }
     }
 
 
-    // timeouts to check agent state
-    // function checkAgentState() {
-    //     if (typeof agent.state === 'undefined') {
-    //         console.log("agent is off....");
-    //
-    //         // restart you engines!
-    //         startListener();
-    //     }
-    // }
-    // let agentCheckTimer = setInterval(checkAgentState, 1000);
-
-
     // START THE PROCESS!!!!
     startListener();
 
-    //function chat() {
-    //let input = user_input.value();
-
-    //}
 }
 
 
