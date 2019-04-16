@@ -111,7 +111,7 @@ function speechSetup() {
     }
 
     function autoRestart() {
-        if (random() > 0.5) {
+        if (random() < 0.5) {
             console.log("RESTART THE CONVERSATION");
             listener.rec.abort();
             listener.resultValue = true;
