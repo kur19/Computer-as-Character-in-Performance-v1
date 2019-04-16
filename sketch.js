@@ -3,7 +3,9 @@
 // variable used to get objects to top level
 var der;
 
-let agent = { started: false };
+let agent = {
+  started: false
+};
 // define listener to be able to reset it
 let listener;
 
@@ -12,14 +14,14 @@ let selfFeedback = false;
 
 
 function setup() {
-    noCanvas();
-    console.log("in standby mode, click mouse to start system!");
+  noCanvas();
+  console.log("in standby mode, click mouse to start system!");
 }
 
 function draw() {
-    let node = document.querySelector('#agent_status');
+  let node = document.querySelector('#agent_status');
 
-    node.innerText = agent.state;
+  node.innerText = agent.state;
 }
 
 
@@ -27,117 +29,124 @@ function draw() {
 
 
 function mousePressed() {
-    if (agent.started) {
-        startListener();
-    } else {
-        speechSetup();
-    }
+  if (agent.started) {
+    startListener();
+  } else {
+    speechSetup();
+  }
 }
 
 // start the listener
 function startListener() {
-    if (agent.state !== 'listening' && agent.state !== 'speaking') {
-        console.log("started listener");
-        listener.start();
-    }
+  if (agent.state !== 'listening' && agent.state !== 'speaking') {
+    console.log("started listener");
+    listener.start();
+  }
 }
 
 function speechSetup() {
-    agent.started = true;
-    listener = new p5.SpeechRec('en-US', gotSpeech);
-    let speech = new p5.Speech();
-    let continuous = false;
+  agent.started = true;
+  listener = new p5.SpeechRec('en-US', gotSpeech);
+  let speech = new p5.Speech();
+  let continuous = false;
 
-    if (selfFeedback) {
-        continuous = true;
-        console.log("self feedback mode is on");
+  if (selfFeedback) {
+    continuous = true;
+    console.log("self feedback mode is on");
+  }
+
+  let interim = false;
+
+  listener.continuous = continuous;
+  listener.interim = interim;
+
+
+  // ***********************CALLBACK FUNCTIONS*****************************
+
+
+
+  listener.onStart = function() {
+    console.log("I am listening...");
+    agent.state = 'listening';
+  };
+  listener.onEnd = function() {
+    console.log("I stopped listening!!!!!!!");
+    console.log(listener.resultValue);
+    if (!selfFeedback) {
+      agent.state = undefined;
+    }
+    if (listener.resultValue === undefined) {
+      startListener();
+    }
+  };
+
+  // function to execute when speaking starts
+  speech.onStart = function() {
+    console.log("started talking...");
+  };
+
+  // function to execute when speaking stops
+  speech.onEnd = function() {
+    console.log("stopped talking...");
+    if (!selfFeedback) {
+      agent.state = undefined;
+    }
+    // restart listener
+    if (!selfFeedback) {
+      startListener();
+      console.log("stop talking, start listening");
+      listener.resultValue = undefined;
     }
 
-    let interim = false;
-
-    listener.continuous = continuous;
-    listener.interim = interim;
-
-
-    // ***********************CALLBACK FUNCTIONS*****************************
+  };
 
 
 
-    listener.onStart = function() {
-        console.log("I am listening...");
-        agent.state = 'listening';
-    };
-    listener.onEnd = function() {
-        console.log("I stopped listening!!!!!!!");
-        console.log(listener.resultValue);
-        if (!selfFeedback) { agent.state = undefined; }
-        if (listener.resultValue === undefined) { startListener(); }
-    };
+  // ***********************RIVE BOT*****************************
 
-    // function to execute when speaking starts
-    speech.onStart = function() {
-        console.log("started talking...");
-    };
+  let bot = new RiveScript();
 
-    // function to execute when speaking stops
-    speech.onEnd = function() {
-        console.log("stopped talking...");
-        if (!selfFeedback) { agent.state = undefined; }
-        // restart listener
-        if (!selfFeedback) {
-            startListener();
-            console.log("stop talking, start listening");
-            listener.resultValue = undefined;
-        }
+  bot.loadFile("brain.rive").then(brainReady).catch(brainError);
 
-    };
+  function brainReady() {
+    console.log('Chatbot ready to play!');
+    bot.sortReplies();
+  }
+
+  function brainError() {
+    console.log('Chatbot error!');
+  }
+
+  let user_input = select('#user_input');
+  let output = select('#output');
 
 
 
-    // ***********************RIVE BOT*****************************
+  let silenceCheckTimer;
 
-    let bot = new RiveScript();
+  function gotSpeech() {
+    if (listener.resultValue) {
 
-    bot.loadFile("brain.rive").then(brainReady).catch(brainError);
+      // get user spoken string and pass along
+      let input = listener.resultString;
+      console.log(input);
+      user_input.html(input);
 
-    function brainReady() {
-        console.log('Chatbot ready to play!');
-        bot.sortReplies();
+      // get the reply from rive script
+      // then hand it to the synthesizer
+      bot.reply("local-user", input).then(function(reply) {
+        agent.state = 'speaking';
+        listener.rec.abort();
+        speech.speak(reply);
+        output.html(reply);
+        console.log(reply);
+      });
     }
-    function brainError() {
-        console.log('Chatbot error!');
-    }
-
-    let user_input = select('#user_input');
-    let output = select('#output');
+  }
 
 
-
-    let silenceCheckTimer;
-
-    function gotSpeech() {
-        if (listener.resultValue) {
-
-            // get user spoken string and pass along
-            let input = listener.resultString;
-            console.log(input);
-            user_input.html(input);
-
-            // get the reply from rive script
-            // then hand it to the synthesizer
-            bot.reply("local-user", input).then(function(reply) {
-                agent.state = 'speaking';
-                listener.rec.abort();
-                speech.speak(reply);
-                output.html(reply);
-                console.log(reply);
-            });
-        }
-    }
-
-
-    // START THE PROCESS!!!!
-    startListener();
+  // START THE PROCESS!!!!
+  startListener();
 
 }
 
@@ -146,7 +155,7 @@ function speechSetup() {
 
 
 let kickoffStatements = [
-    "where did you go?",
-    "relax I'm still here."
+  "where did you go?",
+  "relax I'm still here."
 
 ];
