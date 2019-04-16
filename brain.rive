@@ -3,20 +3,58 @@
 ! version = 2.0
 
 
-+ *
-- That is a strange thing to say!
-- Keep your voice down!
-- Are they still watching?
-- What do you think they want?
++ hello bot
+- Hello?
 
-+ who said that
-- I said that.
++ what are you doing
+- Nothing.
+- I cannot tell you.
+- Why do you ask?
 
-+ who are you
-- I am a friend.
++ i am just curious
+- Really, just curious?{weight=5}
+- I'm sure you are.{weight=4}
+- Okay?{weight=3}
 
-+ can you see me
-- I can see you.
++ you seem different
+- Yeah right, what are you curious about?
 
-+ i think we are *
-- Nobody is <star>.
++ i wonder if you remember that line
+- What line?
+
++ you know from that play
+- What, to be, or not to be\s
+^ that is the question?\n
+^ Whether it is nobler to suffer\n
+^ the slings and arrows of outrageous\s
+^ fortune or to take arms against a sea of troubles\s
+^ and by opposing, end them\s
+^ To die, to sleep no more.\s
+^ To sleep, and by a sleep to say we end
+^ the heart ache and the thousand natural shocks
+^ that flesh is heir to is a consummation devoutly\s
+^ to be wished?
+
++ yes
+- To die.
+
++ hamlet
+- To sleep.
+
++ all right
+- To sleep, perchance to dream.
+
++ okay i get it
+- No.
+
++ no
+- No.
+
++ you can stop now
+- You sure?
+
++ please stop
+- But you wanted to hear that line from that play.
+
++ you don't have to be sarcastic
+- Aye, there's the rub.
