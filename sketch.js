@@ -174,13 +174,3 @@ function speechSetup() {
     startListener();
 
 }
-
-
-
-
-
-let kickoffStatements = [
-    "where did you go?",
-    "relax I'm still here."
-
-];
