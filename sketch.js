@@ -3,7 +3,9 @@
 // variable used to get objects to top level
 var der;
 
-let agent = { started: false };
+let agent = {
+    started: false
+};
 // define listener to be able to reset it
 let listener;
 
@@ -55,6 +57,8 @@ function speechSetup() {
 
     let interim = false;
 
+    let silenceCheckTimer;
+
     listener.continuous = continuous;
     listener.interim = interim;
 
@@ -70,27 +74,56 @@ function speechSetup() {
     listener.onEnd = function() {
         console.log("I stopped listening!!!!!!!");
         console.log(listener.resultValue);
-        if (!selfFeedback) { agent.state = undefined; }
-        if (listener.resultValue === undefined) { startListener(); }
+        if (!selfFeedback) {
+            agent.state = undefined;
+        }
+        if (listener.resultValue === undefined) {
+            startListener();
+        }
     };
 
     // function to execute when speaking starts
     speech.onStart = function() {
         console.log("started talking...");
+        clearInterval(silenceCheckTimer);
+
     };
 
     // function to execute when speaking stops
     speech.onEnd = function() {
         console.log("stopped talking...");
-        if (!selfFeedback) { agent.state = undefined; }
+        if (!selfFeedback) {
+            agent.state = undefined;
+        }
         // restart listener
         if (!selfFeedback) {
             startListener();
             console.log("stop talking, start listening");
             listener.resultValue = undefined;
         }
+        startCheckTimer();
 
     };
+
+    function startCheckTimer() {
+        silenceCheckTimer = setTimeout(autoRestart, 5000);
+        console.log("start self check timer");
+    }
+
+    function autoRestart() {
+        if (random() > 0.5) {
+            console.log("RESTART THE CONVERSATION");
+            listener.rec.abort();
+            listener.resultValue = true;
+            listener.resultString = "321restartconvo";
+            gotSpeech();
+        } else {
+            console.log("RESTART CHECK TIMER");
+            silenceCheckTimer = setTimeout(autoRestart, 5000);
+        }
+    }
+
+
 
 
 
@@ -104,6 +137,7 @@ function speechSetup() {
         console.log('Chatbot ready to play!');
         bot.sortReplies();
     }
+
     function brainError() {
         console.log('Chatbot error!');
     }
@@ -113,7 +147,7 @@ function speechSetup() {
 
 
 
-    let silenceCheckTimer;
+
 
     function gotSpeech() {
         if (listener.resultValue) {
