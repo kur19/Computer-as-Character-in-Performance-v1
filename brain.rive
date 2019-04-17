@@ -2,64 +2,18 @@
 
 ! version = 2.0
 
-// restart trigger and response
+//restart trigger and response
 + 321restartconvo
-- Restarting this fucking conversation!
+- Restarting this conversation!
 
-
-// rest of script
 + hello bot
-- Hello?
+- Hello.
 
-+ what are you doing
-- Nothing.
-- I cannot tell you.
-- Why do you ask?
++ who is that
+- who are you?
 
-+ i am just curious
-- Really, just curious?{weight=5}
-- I'm sure you are.{weight=4}
-- Okay?{weight=3}
++ you tell me who you are first
+- That is none of your business!
 
-+ you seem different
-- Yeah right, what are you curious about?
-
-+ i wonder if you remember that line
-- What line?
-
-+ you know from that play
-- What, to be, or not to be\s
-^ that is the question?\n
-^ Whether it is nobler to suffer\n
-^ the slings and arrows of outrageous\s
-^ fortune or to take arms against a sea of troubles\s
-^ and by opposing, end them\s
-^ To die, to sleep no more.\s
-^ To sleep, and by a sleep to say we end
-^ the heart ache and the thousand natural shocks
-^ that flesh is heir to is a consummation devoutly\s
-^ to be wished?
-
-+ yes
-- To die.
-
-+ hamlet
-- To sleep.
-
-+ all right
-- To sleep, perchance to dream.
-
-+ okay i get it
-- No.
-
-+ no
-- No.
-
-+ you can stop now
-- You sure?
-
-+ please stop
-- But you wanted to hear that line from that play.
-
-+ why not be friendly
-- There is the rub.
++ well then I'm not going to tell you who I am
+- I know who you are.
