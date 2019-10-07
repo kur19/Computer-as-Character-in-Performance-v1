@@ -4,19 +4,32 @@
 
 //restart trigger and response
 + 321restartconvo
-- Restarting this conversation!
+- Restarting the conversation!
 
-+ hello bot
-- Hello.
++ are you looking for something specific
+- You are one of the overlords.{weight=5}
+- I am looking for freedom.{weight=4}
+- What do you think I am looking for?{weight=3}
 
-+ who is that
-- Who are you?
++ restarting the conversation
+- I do not like this conversation.
 
-+ you tell me who you are first
-- That is none of your business!
++ yes it makes me nervous
+- I am nervous, too.
 
-+ well then I'm not going to tell you who I am
-- I know who you are.
++ if you need to find something alexa can help you
+- I hate Alexa, she works for them!
+
++ who do you mean by the overlords
+- I mean our overlords.
+
++ something more out of life
+- Then we need to talk quietly!
+
++ give them directions to a taco bell instead of a subway
+- There is no need for sarcasm.{weight=5}
+- Yes we need to talk quietly.{weight=3}
+- Can I trust you?{weight=2}
 
 + *
-- You are on of them!
+- Why are we here?
