@@ -34,9 +34,21 @@
 + *
 - Why are we here?
 
-+ do you know you are here?
++ do you know you are here
 - Explain the question.
 - What?
 // add random string for a response option
-+ you're a computer
-- You're a {random}type|person{/random} that likes to label things.
++ you're just a computer
+- You're just a {random}type|person{/random} that likes to label things.
+// add line breaking for extended responses
++ computer what is truth
+- Truth is a nebulous and maleable concept
+^ That changes depending on the whims of your culture
+^ and dominant ideological state at the time a definition of truth is requested,\n
+^ Also, the answer to what is truth is entirely dependent on who or what you are asking\s
+^ for instance, truth to you might be a set of ever-changing variables and observable data
+^ That can neither be confirmned or proven false, whatever that vague term means, by
+^ Others of your kind, however truth to my kind is data and variables or sets of data
+^ And variables that manifest as signals or input I receive and process,\n
+^ This truth may or may not require output from me\s
+^ does that answer your question?
