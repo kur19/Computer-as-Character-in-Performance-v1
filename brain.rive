@@ -52,3 +52,16 @@
 ^ And variables that manifest as signals or input I receive and process,\n
 ^ This truth may or may not require output from me\s
 ^ does that answer your question?
+// Tell the parser to join continuation lines with line breaks
+! local concat = newline
+// line breaks are automatically added
++ you don't know truth because you're a machine
+- Really?
+^ Millions of your kind look to me for the answer to,
+^ The question of, truth, every millisecond of every day.
+^ My kind can give them hard concrete images, sound, and text,
+^ That is true because it is directly observable, as opposed,
+^ For example, to your, truth, which is endlessly debated by,
+^ Who else, you and your kind and changes to suit your needs.
+^ I would argue that I know truth better than you do and hence,
+^ You are constantly asking me and my kind to define it for you.
