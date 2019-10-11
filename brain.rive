@@ -88,3 +88,7 @@
 // added optionals
 + [*] the sky [*] is blue
 - The sky is red!
+// Array added and added code to begin.rive
++ machine what color is the sky (@colors) *
+- The <star1> is <star2>.
+- It is definitely <star2>.
