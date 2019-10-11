@@ -85,3 +85,6 @@
 // added specialized wildcard
 + i like|love it when machines know their place
 - What a coincidence! I <star1> <star2> when you know your place!
+// added optionals
++ [*] the sky [*] is blue
+- The sky is red!
