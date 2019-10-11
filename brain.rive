@@ -76,3 +76,12 @@
 - I can show a child a picture of a red sky.
 ^ And if they have never seen the sky, they would agree with me\s
 ^ see truth.
+
++ the sky is blue
+- My childs sky is red if I show them proof.
+// second wildcard using 'think'
++ you cannot * for yourself
+- define <star2>.
+// added specialized wildcard
++ i like|love it when machines know their place
+- What a coincidence! I <star1> <star2> when you know your place!
