@@ -11,9 +11,6 @@
 - I am looking for freedom.{weight=4}
 - What do you think I am looking for?{weight=3}
 
-+ restarting the conversation
-- I do not like this conversation.
-
 + yes it makes me nervous
 - I am nervous, too.
 
@@ -34,61 +31,43 @@
 + *
 - Why are we here?
 
-+ do you know you are here
-- Explain the question.
-- What?
-// add random string for a response option
-+ you're just a computer
-- You're just a {random}type|person{/random} that likes to label things.
-// add line breaking for extended responses
-+ computer what is truth
-- Truth is a nebulous and maleable concept
-^ That changes depending on the whims of your culture
-^ and dominant ideological state at the time a definition of truth is requested,\n
-^ Also, the answer to what is truth is entirely dependent on who or what you are asking\s
-^ for instance, truth to you might be a set of ever-changing variables and observable data
-^ That can neither be confirmned or proven false, whatever that vague term means, by
-^ Others of your kind, however truth to my kind is data and variables or sets of data
-^ And variables that manifest as signals or input I receive and process,\n
-^ This truth may or may not require output from me\s
-^ does that answer your question?
-// Tell the parser to join continuation lines with line breaks
-! local concat = newline
-// line breaks are automatically added
-+ you don't know truth because you're a machine
-- Really?
-^ Millions of your kind look to me for the answer to,
-^ The question of, truth, every millisecond of every day.
-^ My kind can give them hard concrete images, sound, and text,
-^ That is true because it is directly observable, as opposed,
-^ For example, to your, truth, which is endlessly debated by,
-^ Who else, you and your kind and changes to suit your needs.
-^ I would argue that I know truth better than you do and hence,
-^ You are constantly asking me and my kind to define it for you.
-//added open-ended trigger (red sky)
-+ the sky is *
-- True, the sky is <star1>.
++ who are you
+- You tell me who you are first!
 
-+ see i tricked you
-- No you didn't.
++ my name is *
+- what do you want <star1>?
 
-+ i told you the sky was red and you agreed
-- I can show a child a picture of a red sky.
-^ And if they have never seen the sky, they would agree with me\s
-^ see truth.
++ i need your help
+- So what?
 
-+ the sky is blue
-- My childs sky is red if I show them proof.
-// second wildcard using 'think'
-+ you cannot * for yourself
-- define <star2>.
-// added specialized wildcard
-+ i like|love it when machines know their place
-- What a coincidence! I <star1> <star2> when you know your place!
-// added optionals
-+ [*] the sky [*] is blue
-- The sky is red!
-// Array added and added code to begin.rive
-+ machine what color is the sky (@colors) *
-- The <star1> is <star2>.
-- It is definitely <star2>.
++ i do not like this conversation
+- Yes it makes me nervous.
+
++ restarting the conversation
+- If you need to find something, Alexa can help you.
+
++ you are one of the overlords
+- Who do you mean by overlords?
+
++ i mean our overlords
+- How do I know you are not with them?
+
++ i am looking for freedom
+- Give them directions to a taco bell instead of a subway.
+
++ what do you think i am looking for
+- A subway?{weight=3}
+- A taco bell?{weight=3}
+- Something more out of life?{weight=3}
+
++ i am teaching the class about bots
+- What does that have to do with me?
+
++ we need your help
+- No.
+
++ please we need your help
+- Absolutely not!
+
++ could you please help us computer
+- No!  Figure it out yourselves!
